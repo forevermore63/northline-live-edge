@@ -1,10 +1,16 @@
-# Northline Live Edge Desk
+# Northline · Live Edge Desk
 
-High-frequency challenge trading desk on **live Coinbase** market data.
+High-frequency challenge desk on **live Coinbase** market data (WebSocket ticker + REST fallback).
 
-- Live WebSocket tape
-- Continuous regime adaptation (~4s)
-- Autopilot systems: Pulse, Snap, Grid, Scalp
-- Challenge capital ($50k default) with profit target and drawdown rails
+- Paper challenge capital ($50k) with 10% target / 5% daily / 10% max drawdown rails
+- Four systems: Pulse · Snap · Grid · Scalp — continuous regime scoring every ~2s
+- Dynamic risk scaling from win/loss streaks and equity slope
+- Honest framing: strategies can lose; not a broker; no real withdrawals
 
-**Not a broker.** Challenge capital is not withdrawable cash. Strategies can lose.
+## Live
+
+Deployed via Vercel from this repo.
+
+## Local
+
+Open `index.html` or serve statically. Requires browser access to `api.exchange.coinbase.com` and `wss://ws-feed.exchange.coinbase.com`.
