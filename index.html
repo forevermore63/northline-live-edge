@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Northline · Live Edge Desk</title>
+  <meta name="theme-color" content="#070809" />
+  <meta name="description" content="High-frequency challenge desk on live Coinbase prices. Continuous edge adaptation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="mark display">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3v18M12 3L7.4 8.8M12 3l4.6 5.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      Northline
+    </div>
+    <span id="feedPill" class="pill off"><span class="dot"></span>Connecting</span>
+    <span id="autoPill" class="pill off">Autopilot idle</span>
+    <div class="hdr-right">
+      <div class="equity-chip">
+        <div class="lbl">Equity</div>
+        <div id="hdrEquity" class="val mono">$50,000.00</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="tape" aria-label="Live tape">
+    <div class="tape-track mono" id="tape"></div>
+  </div>
+
+  <main>
+    <section class="card" style="grid-column: 1 / -1;">
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="k">Equity</div>
+          <div id="statEquity" class="v mono">$50,000.00</div>
+          <div id="statPnl" class="s mono">0.00%</div>
+        </div>
+        <div class="stat">
+          <div class="k">Session edge</div>
+          <div id="statEdge" class="v mono">$0.00</div>
+          <div id="statFills" class="s">0 fills · 0/s</div>
+        </div>
+        <div class="stat">
+          <div class="k">Target progress</div>
+          <div id="statTarget" class="v mono">0%</div>
+          <div class="progress"><i id="targetBar"></i></div>
+        </div>
+        <div class="stat">
+          <div class="k">Adaptations</div>
+          <div id="statAdapt" class="v mono">0</div>
+          <div id="statRegime" class="s">Booting regime…</div>
+        </div>
+      </div>
+      <svg class="spark" id="spark" viewBox="0 0 400 72" preserveAspectRatio="none"></svg>
+      <div class="controls">
+        <button class="btn" id="btnArm">Arm maximum edge</button>
+        <button class="btn secondary" id="btnDisarm">Disarm & flatten</button>
+        <button class="btn ghost" id="btnReset">Reset $50k challenge</button>
+      </div>
+      <p class="note">Live Coinbase tape · challenge capital · continuous regime adaptation every few seconds. Not a broker. Strategies can lose.</p>
+    </section>
+
+    <section class="card">
+      <h2>Live symbols</h2>
+      <div class="watch" id="watch"></div>
+      <div class="controls">
+        <button class="btn buy" id="btnBuy">Buy</button>
+        <button class="btn sell" id="btnSell">Sell</button>
+      </div>
+      <p class="note" id="ticketMeta">Select a symbol · risk sized from equity</p>
+    </section>
+
+    <section class="card">
+      <h2>Autopilot systems</h2>
+      <div class="bots" id="bots"></div>
+      <label class="note" style="display:block;margin-top:12px;">
+        Risk per fill <span id="riskLbl">1.10%</span>
+        <input type="range" id="risk" min="0.4" max="2.2" step="0.05" value="1.1" />
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>Open positions</h2>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th><th>Side</th><th>Qty</th><th>Entry</th><th>Last</th><th>P&L</th><th>System</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="posBody">
+            <tr><td colspan="8" class="subtle">Waiting on live edge…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Adaptation log</h2>
+      <div class="log mono" id="log"></div>
+    </section>
+
+    <p class="footer-note">
+      Northline v2 · high-frequency challenge desk on live Coinbase market data. Edge scores adapt from recent live ticks.
+      Challenge capital is not withdrawable cash. Past live edge ≠ future results.
+    </p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
